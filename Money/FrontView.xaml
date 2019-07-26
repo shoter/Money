@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="Money.FrontView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Money"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*"/>
+			<ColumnDefinition Width="1*"/>
+		</Grid.ColumnDefinitions>
+		<DataGrid Name="TransactionList" Grid.RowSpan="2" AutoGenerateColumns="False" IsReadOnly="true">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Type" Binding="{Binding TransactionType}"  >
+					<DataGridTextColumn.CellStyle>
+						<Style>
+							<Setter Property="TextElement.Foreground" Value="{Binding TransactionTypeFontBrush}"/>
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
+				<DataGridTextColumn Header="Date" Binding="{Binding Date}" />
+				<DataGridTextColumn Header="Price" Binding="{Binding Price}" />
+				<DataGridTextColumn Header="Amount" Binding="{Binding Amount}" />
+				<DataGridTextColumn Header="Commision" Binding="{Binding Commision}" />
+				<DataGridTextColumn Header="Profit/Loss" Binding="{Binding Profit}"  >
+					<DataGridTextColumn.CellStyle>
+						<Style>
+							<Setter Property="TextElement.Foreground" Value="{Binding ProfitFontBrush}"/>
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
+
+			</DataGrid.Columns>
+		</DataGrid>
+		<DockPanel Name="FrontInformations" Grid.Column="1">
+			<DockPanel DockPanel.Dock="Top">
+				<TextBlock Text="Start date: " />
+				<TextBlock Text="{Binding StartDate}" />
+			</DockPanel>
+			<DockPanel DockPanel.Dock="Top">
+				<TextBlock Text="End date: " />
+				<TextBlock Text="{Binding EndDate}" />
+			</DockPanel>
+			<DockPanel DockPanel.Dock="Top">
+				<TextBlock Text="Profit: " />
+				<TextBlock Text="{Binding Profit}" Foreground="{Binding ProfitFontBrush}" />
+			</DockPanel>
+			<DockPanel DockPanel.Dock="Top">
+				<TextBlock Text="Amount holded: " />
+				<TextBlock Text="{Binding HoldedAmount}"/>
+			</DockPanel>
+			<DockPanel DockPanel.Dock="Top">
+				<TextBlock Text="Forecast: " />
+				<TextBlock Text="{Binding Forecast}" Foreground="{Binding ForecastFontBrush}" />
+			</DockPanel>
+		</DockPanel>
+		<DockPanel Name="NewTransaction" Grid.Column="1" Grid.Row="1">
+			<DockPanel DockPanel.Dock="Top">
+				<TextBlock Text="Transaction Type: " />
+				<ComboBox Name="TransactionTypeCombo" SelectedValue="{Binding TransactionType}">
+					<!--<ComboBoxItem Tag="1">
+						<TextBlock Foreground="Green">Buy</TextBlock>
+					</ComboBoxItem>
+					<ComboBoxItem Tag="2">
+						<TextBlock Foreground="Red">Sell</TextBlock>
+					</ComboBoxItem>-->
+				</ComboBox>
+			</DockPanel>
+			<DockPanel DockPanel.Dock="Top">
+				<TextBlock Text="Date: " />
+				<DatePicker SelectedDate="{Binding Date}" />
+			</DockPanel>
+			<DockPanel DockPanel.Dock="Top">
+				<TextBlock Text="Amount: " />
+				<TextBox Text="{Binding Amount}" />
+			</DockPanel>
+			<DockPanel DockPanel.Dock="Top">
+				<TextBlock Text="Price: " />
+				<TextBox Text="{Binding Price}" />
+			</DockPanel>
+			<DockPanel DockPanel.Dock="Top">
+				<TextBlock Text="Total: " />
+				<TextBlock Text="{Binding Profit}" />
+			</DockPanel>
+			<DockPanel DockPanel.Dock="Top">
+				<TextBlock Text="Comission: " />
+				<TextBlock Text="{Binding Comission}" />
+			</DockPanel>
+			<Button DockPanel.Dock="Top" Click="Add">Add</Button>
+			<Border />
+		</DockPanel>
+	</Grid>
+</UserControl>
