@@ -1,0 +1,3 @@
+[submodule "C-Common"]
+	path = C-Common
+	url = https://github.com/shoter/C-Common

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Money", "Money\Money.csproj", "{85011961-DA9C-409F-B03E-2560AB7091AE}"
 EndProject
@@ -11,7 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyBackTests", "MoneyBack
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{72D6B3AC-EDBB-4E0C-A07B-DFA09446356C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common\Common.csproj", "{7833DE49-4309-4C54-BD72-EA7B9F99F71F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "C-Common\Common\Common.csproj", "{7833DE49-4309-4C54-BD72-EA7B9F99F71F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Money.San", "Money.San\Money.San.csproj", "{9F88795C-4828-4B89-A874-3E2B491EE650}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +52,12 @@ Global
 		{7833DE49-4309-4C54-BD72-EA7B9F99F71F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7833DE49-4309-4C54-BD72-EA7B9F99F71F}.Test|Any CPU.ActiveCfg = Test|Any CPU
 		{7833DE49-4309-4C54-BD72-EA7B9F99F71F}.Test|Any CPU.Build.0 = Test|Any CPU
+		{9F88795C-4828-4B89-A874-3E2B491EE650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F88795C-4828-4B89-A874-3E2B491EE650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F88795C-4828-4B89-A874-3E2B491EE650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F88795C-4828-4B89-A874-3E2B491EE650}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F88795C-4828-4B89-A874-3E2B491EE650}.Test|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F88795C-4828-4B89-A874-3E2B491EE650}.Test|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

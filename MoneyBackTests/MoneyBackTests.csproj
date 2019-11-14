@@ -55,6 +55,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\C-Common\Common\Common.csproj">
+      <Project>{7833de49-4309-4c54-bd72-ea7b9f99f71f}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyBack\MoneyBack.csproj">
       <Project>{41cd463b-095a-4bc5-818d-f0a205a9fc29}</Project>
       <Name>MoneyBack</Name>
