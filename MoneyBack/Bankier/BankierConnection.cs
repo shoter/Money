@@ -12,7 +12,7 @@ namespace MoneyBack.Bankier
     {
         public async Task<GetDataResponse> GetData(string symbol, bool intraday, bool today)
         {
-            var jsonObject = await new JsonRequest("http://www.bankier.pl/new-charts/get-data")
+            var jsonObject = await new JsonRequest("https://www.bankier.pl/new-charts/get-data")
                 .AddArgument("symbol", symbol)
                 .AddArgument("intraday", intraday.ToString().ToLower())
                 .AddArgument("type", "area")

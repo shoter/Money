@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +25,10 @@ namespace Money
         private static event Action<object, string> createNewTabEvent;
         public MainWindow()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+                 | SecurityProtocolType.Tls11
+                 | SecurityProtocolType.Tls12
+                 | SecurityProtocolType.Ssl3;
             InitializeComponent();
 
             CreateFront.NewFrontCreatedEvent += OnNewFrontCreation;
