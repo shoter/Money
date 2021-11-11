@@ -54,7 +54,22 @@ namespace Money.ViewModels.Transactions
             }
         }
 
-        public decimal Comission => CommisionCalculator.Calculate((Price ?? 0m) * (Amount ?? 0));
+        public AddTransactionViewModel(StockBroker broker)
+        {
+            this.Broker = broker;
+        }
+
+        public StockBroker Broker { get; set; }
+
+        public decimal Comission
+        {
+            get
+            {
+                var calculator = CalculatorProvider.Provide(Broker);
+                return calculator.Calculate((Price ?? 0m) * (Amount ?? 0));
+            }
+        }
+
         public decimal Profit => (TransactionTypeEnum == TransactionTypeEnum.Buy ? -1m : 1m) * (Amount ?? 0) * (Price ?? 0m) - Comission;
 
         protected void OnPropertyChanged(string name)

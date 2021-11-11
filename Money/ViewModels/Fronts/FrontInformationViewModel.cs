@@ -1,5 +1,7 @@
 ﻿using MoneyBack;
 using MoneyBack.Calculators;
+using MoneyBack.Enums;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +18,8 @@ namespace Money.ViewModels.Fronts
         public string EndDate { get; set; }
 
         public decimal Profit { get; set; }
+        public StockBroker Broker { get; set; }
+
         public Brush ProfitFontBrush => Profit > 0m ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
         public int HoldedAmount { get; set; }
         private decimal? holdedPrice;
@@ -30,9 +34,20 @@ namespace Money.ViewModels.Fronts
             }
         }
 
-        public decimal Forecast => HoldedPrice.HasValue == false || HoldedAmount == 0 ?
-            Profit :
-            Profit + HoldedPrice.Value * HoldedAmount - CommisionCalculator.Calculate(HoldedPrice.Value);
+        public decimal Forecast
+        {
+            get
+            {
+                if (HoldedPrice.HasValue == false || HoldedAmount == 0)
+                {
+                    return Profit;
+                }
+
+                ICommisionCalculator calculator = CalculatorProvider.Provide(Broker);
+
+                return Profit + HoldedPrice.Value * HoldedAmount - calculator.Calculate(HoldedPrice.Value);
+            }
+        }
 
         public Brush ForeacstFontBrush => Forecast >= 0 ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
 
@@ -42,6 +57,7 @@ namespace Money.ViewModels.Fronts
             EndDate = front.EndDate?.ToShortDateString();
             Profit = front.Transactions.Select(t => t.Total).Sum() ?? 0m;
             HoldedAmount = front.Transactions.Select(t => t.AmountChange).Sum() ?? 0;
+            this.Broker = (StockBroker)front.Company.Broker;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

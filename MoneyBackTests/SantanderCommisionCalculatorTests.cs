@@ -6,8 +6,10 @@ using MoneyBack.Calculators;
 namespace MoneyBackTests
 {
     [TestClass]
-    public class CommisionCalculatorTests
+    public class SantanderCommisionCalculatorTests
     {
+        private ICommisionCalculator calculator = new SantanderCommisionCalculator();
+
         [TestMethod]
         public void RealLifeTests()
         {
@@ -25,7 +27,7 @@ namespace MoneyBackTests
 
             foreach (var sample in realLifeSamples)
             {
-                Assert.AreEqual(sample.Item2, CommisionCalculator.Calculate(sample.Item1));
+                Assert.AreEqual(sample.Item2, calculator.Calculate(sample.Item1));
             }
         }
     }

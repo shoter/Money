@@ -36,6 +36,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.38.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.38\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -59,12 +62,20 @@
     <Compile Include="Bankier\Models\GetDataResponse.cs" />
     <Compile Include="Bankier\Models\IntervalDetail.cs" />
     <Compile Include="Bankier\Models\ProfileData.cs" />
-    <Compile Include="Calculators\CommisionCalculator.cs" />
+    <Compile Include="Calculators\CalculatorFactory.cs" />
+    <Compile Include="Calculators\SantanderCommisionCalculator.cs" />
+    <Compile Include="Calculators\EtoroCommissionCalculator.cs" />
+    <Compile Include="Calculators\ICommisionCalculator.cs" />
     <Compile Include="Calculators\ProfitBackCalculator.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Company.cs">
       <DependentUpon>MoneyEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Currencies\CurrencyProvider.cs" />
+    <Compile Include="Currencies\DolarCurrency.cs" />
+    <Compile Include="Currencies\ICurrency.cs" />
+    <Compile Include="Currencies\PolishCurrency.cs" />
+    <Compile Include="Enums\StockBroker.cs" />
     <Compile Include="Enums\TransactionTypeEnum.cs" />
     <Compile Include="Front.cs">
       <DependentUpon>MoneyEntities.tt</DependentUpon>
@@ -93,6 +104,7 @@
     <Compile Include="Repositories\MoneyRepositoryBase.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="Requests\JsonRequest.cs" />
+    <Compile Include="Stooq\StooqService.cs" />
     <Compile Include="Transaction.cs">
       <DependentUpon>MoneyEntities.tt</DependentUpon>
     </Compile>

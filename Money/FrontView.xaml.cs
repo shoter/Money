@@ -37,6 +37,8 @@ namespace Money
         private readonly int frontID;
         private readonly string companySymbol;
 
+        private StockBroker broker;
+
         public FrontView(int frontID)
         {
             this.frontID = frontID;
@@ -71,8 +73,10 @@ namespace Money
                     Date = t.Date
                 }).ToList());
 
+            broker = (StockBroker) front.Company.Broker;
+
             TransactionList.ItemsSource = TransactionsViewModel;
-            NewTransaction.DataContext = AddViewModel = new AddTransactionViewModel();
+            NewTransaction.DataContext = AddViewModel = new AddTransactionViewModel(broker);
 
             GetInformationAboutFront().RunAsync();
         }
@@ -132,7 +136,7 @@ namespace Money
                 Date = transaction.Date
             });
 
-            NewTransaction.DataContext = AddViewModel = new AddTransactionViewModel();
+            NewTransaction.DataContext = AddViewModel = new AddTransactionViewModel(broker);
         }
     }
 }

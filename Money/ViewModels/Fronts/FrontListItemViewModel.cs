@@ -1,5 +1,7 @@
 ﻿using MoneyBack;
 using MoneyBack.Calculators;
+using MoneyBack.Enums;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +21,8 @@ namespace Money.ViewModels.Fronts
         public string Company { get; set; }
         public Brush ProfitFontBrush => Profit >= 0 ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
         public int HoldedAmount { get; set; }
+
+        public StockBroker Broker { get; set; }
         public string PriceToSellToHaveProfit => HoldedAmount == 0 ? "" : $"{ProfitBackCalculator.Calculate(HoldedAmount, Profit):0.##}";
         public decimal PriceToSellToHaveProfitValue => HoldedAmount == 0 ? 0 : ProfitBackCalculator.Calculate(HoldedAmount, Profit);
         private decimal? holdedPrice;
@@ -37,10 +41,20 @@ namespace Money.ViewModels.Fronts
         }
 
 
-        public Decimal Projection =>
-            holdedPrice.HasValue == false || HoldedAmount == 0 ?
-            Profit :
-            Profit + HoldedAmount * holdedPrice.Value - CommisionCalculator.Calculate(HoldedAmount * holdedPrice.Value);
+        public Decimal Projection
+        {
+            get
+            {
+                if (HoldedPrice.HasValue == false || HoldedAmount == 0)
+                {
+                    return Profit;
+                }
+
+                ICommisionCalculator calculator = CalculatorProvider.Provide(Broker);
+
+                return Profit + holdedPrice.Value * HoldedAmount - calculator.Calculate(HoldedAmount * HoldedPrice.Value);
+            }
+        }
 
         public Brush ProjectionFontBrush => Projection >= 0 ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
         public Brush CurrentPriceBrush => HoldedPrice >= PriceToSellToHaveProfitValue ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
@@ -51,6 +65,7 @@ namespace Money.ViewModels.Fronts
             Profit = front.Transactions.Sum(t => t.Total) ?? 0m;
             HoldedAmount = front.Transactions.Sum(t => t.AmountChange) ?? 0;
             Company = front.Company?.Symbol;
+            this.Broker = (StockBroker)front.Company.Broker;
         }
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
