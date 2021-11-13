@@ -6,6 +6,8 @@ using MoneyBack.Bankier;
 using MoneyBack.Enums;
 using MoneyBack.Repositories;
 using MoneyBack.Requests;
+using MoneyBack.StockPrices;
+
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -39,6 +41,8 @@ namespace Money
 
         private StockBroker broker;
 
+        private StockPriceType stockPriceType;
+
         public FrontView(int frontID)
         {
             this.frontID = frontID;
@@ -56,6 +60,7 @@ namespace Money
             var front = frontRepository.GetById(frontID);
 
             companySymbol = front.Company.Symbol;
+            stockPriceType = (StockPriceType)front.Company.StockPriceType;
 
             FrontInfoViewModel = new FrontInformationViewModel(front);
 
@@ -85,14 +90,13 @@ namespace Money
         {
             try
             {
-                var bankierService = Global.Kernel.Get<IBankierConnection>();
-                var data = await bankierService.GetData(companySymbol, true, true);
-
+                var stockPriceService = Global.Kernel.Get<IAllStockPriceService>();
+                var price = await stockPriceService.GetStockPrice(stockPriceType, companySymbol);
 
 
                 lock (FrontInfoViewModel)
                 {
-                    FrontInfoViewModel.HoldedPrice = (decimal)data.ActualPrice;
+                    FrontInfoViewModel.HoldedPrice = price;
                 }
             }
             catch (Exception)
@@ -114,7 +118,7 @@ namespace Money
 
             var transaction = new Transaction()
             {
-                Amount = (int)AddViewModel.Amount,
+                Amount = AddViewModel.Amount.Value,
                 Commision = AddViewModel.Comission,
                 Date = AddViewModel.Date,
                 FrontID = frontID,

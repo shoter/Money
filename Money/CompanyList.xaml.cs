@@ -45,7 +45,8 @@ namespace Money
                     ID = c.ID,
                     Name = c.Name,
                     Symbol = c.Symbol,
-                    FrontsCount = c.Fronts.Count
+                    FrontsCount = c.Fronts.Count,
+                    StockPriceType = c.StockPriceType
                 }).ToList();
 
             Filtered = Companies;
@@ -66,7 +67,7 @@ namespace Money
         }
         private static void showCompany(CompanyListItemViewModel item)
         {
-            MainWindow.CreateNewTab(new CompanyInfo(item.ID), "[Company]" + item.Symbol);
+            MainWindow.CreateNewTab(new CompanyInfo(item.ID, item.StockPriceType), "[Company]" + item.Symbol);
 
         }
 

@@ -10,6 +10,9 @@ namespace Money.ViewModels.Companies
     {
         public int ID { get; set; }
         public string Name { get; set; }
+
+        public int StockPriceType { get; set; }
+
         public string Symbol { get; set; }
         public int FrontsCount { get; set; }
     }

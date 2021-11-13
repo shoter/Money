@@ -17,7 +17,7 @@ namespace MoneyBack
         public int ID { get; set; }
         public int FrontID { get; set; }
         public int TypeID { get; set; }
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
         public decimal Price { get; set; }
         public System.DateTime Date { get; set; }
         public decimal Commision { get; set; }

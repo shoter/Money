@@ -1,11 +1,16 @@
 ﻿using Common.Commands;
 using Common.Tasks;
+
 using Money.ViewModels.Companies;
 using Money.ViewModels.Fronts;
+
 using MoneyBack;
 using MoneyBack.Bankier;
 using MoneyBack.Repositories;
+using MoneyBack.StockPrices;
+
 using Ninject;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,12 +36,14 @@ namespace Money
     {
         private int companyID;
         private string companySymbol;
+        private StockPriceType stockPriceType;
         public ObservableCollection<FrontListItemViewModel> Fronts;
 
-        public CompanyInfo(int companyID)
+        public CompanyInfo(int companyID, int stockPriceType)
         {
             InitializeComponent();
             this.companyID = companyID;
+            this.stockPriceType = (StockPriceType)stockPriceType;
 
             var companyRepository = Global.Kernel.Get<ICompanyRepository>();
 
@@ -62,15 +69,14 @@ namespace Money
         {
             try
             {
-                var bankierService = Global.Kernel.Get<IBankierConnection>();
-                var data = await bankierService.GetData(companySymbol, true, true);
-
+                var stockPriceService = Global.Kernel.Get<IAllStockPriceService>();
+                var price = await stockPriceService.GetStockPrice(stockPriceType, companySymbol);
 
 
                 lock (Fronts)
                 {
                     foreach (var front in Fronts)
-                        front.HoldedPrice = (decimal)data.ActualPrice;
+                        front.HoldedPrice = price;
                 }
             }
             catch (Exception e)

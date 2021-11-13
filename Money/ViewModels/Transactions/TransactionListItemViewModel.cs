@@ -13,7 +13,7 @@ namespace Money.ViewModels.Transactions
         public decimal Price { get; set; }
         public decimal Commision { get; set; }
         public DateTime Date { get; set; }
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
         public TransactionTypeEnum TransactionType { get; set; }
         public Brush TransactionTypeFontBrush =>
             TransactionType == TransactionTypeEnum.Buy ? new SolidColorBrush(Colors.Green)
