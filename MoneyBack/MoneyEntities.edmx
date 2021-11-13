@@ -32,12 +32,12 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FrontID" Type="int" Nullable="false" />
           <Property Name="TypeID" Type="int" Nullable="false" />
-          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Commision" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="Total" Type="decimal" Precision="33" Scale="2" StoreGeneratedPattern="Computed" />
-          <Property Name="AmountChange" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="Total" Type="decimal" Precision="33" Scale="4" StoreGeneratedPattern="Computed" />
+          <Property Name="AmountChange" Type="decimal" Precision="21" Scale="2" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="TransactionType">
           <Key>
@@ -140,7 +140,7 @@
           <NavigationProperty Name="Front" Relationship="Self.FK_Transactions_Fronts" FromRole="Transactions" ToRole="Fronts" />
           <NavigationProperty Name="TransactionType" Relationship="Self.FK_Transactions_TransactionType" FromRole="Transactions" ToRole="TransactionType" />
           <Property Name="Commision" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Total" Type="Decimal" Precision="33" Scale="2" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Total" Type="Decimal" Precision="33" Scale="4" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="AmountChange" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="TransactionType">

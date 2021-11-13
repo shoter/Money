@@ -13,6 +13,7 @@ using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -97,8 +98,7 @@ namespace Money
                     }
                     catch (Exception e)
                     {
-                        int a = 2;
-                        //i must log that.
+                        Debug.WriteLine(e);
                     }
             }
         }

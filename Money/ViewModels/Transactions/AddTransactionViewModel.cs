@@ -27,12 +27,12 @@ namespace Money.ViewModels.Transactions
         }
         public DateTime Date { get; set; } = DateTime.Now;
 
-        private int? amount;
+        private decimal? amount;
         private decimal? price;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public int? Amount
+        public decimal? Amount
         {
             get => amount;
             set
