@@ -26,6 +26,7 @@
 				</DataGridTextColumn>
 				<DataGridTextColumn Header="Date" Binding="{Binding Date}" />
 				<DataGridTextColumn Header="Price" Binding="{Binding PriceText}" />
+                <DataGridTextColumn Header="S" Binding="{Binding Currency.Symbol}" />
                 <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" />
 				<DataGridTextColumn Header="Commision" Binding="{Binding CommisionText}" />
                 <DataGridTextColumn Header="Profit/Loss" Binding="{Binding ProfitText}"  >
