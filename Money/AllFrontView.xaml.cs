@@ -86,7 +86,7 @@ namespace Money
                 else try
                     {
                         var stockPriceService = Global.Kernel.Get<IAllStockPriceService>();
-                        decimal price = stockPriceService.GetStockPrice(f.StockPriceType, companySymbol);
+                        decimal price = await stockPriceService.GetStockPrice(f.StockPriceType, companySymbol);
 
                         lock (Fronts)
                         {

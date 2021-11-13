@@ -1,7 +1,9 @@
-﻿namespace MoneyBack.StockPrices
+﻿using System.Threading.Tasks;
+
+namespace MoneyBack.StockPrices
 {
     public interface IAllStockPriceService
     {
-        decimal GetStockPrice(StockPriceType stockType, string symbol);
+        Task<decimal> GetStockPrice(StockPriceType stockType, string symbol);
     }
 }

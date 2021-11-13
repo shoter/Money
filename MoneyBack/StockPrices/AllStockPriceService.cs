@@ -18,9 +18,9 @@ namespace MoneyBack.StockPrices
                 this.stockPriceServices.Add(ss.StockPriceType, ss);
             }
         }
-        public decimal GetStockPrice(StockPriceType stockType, string symbol)
+        public async Task<decimal> GetStockPrice(StockPriceType stockType, string symbol)
         {
-            decimal price = stockPriceServices[stockType].GetStockPrice(symbol);
+            decimal price = await stockPriceServices[stockType].GetStockPrice(symbol);
             Debug.WriteLine($"AllStockPriceService:GetStockPrice({stockType}, {symbol}) = {price}");
             return price;
 
