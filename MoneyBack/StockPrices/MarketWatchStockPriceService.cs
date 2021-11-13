@@ -13,12 +13,12 @@ namespace MoneyBack.StockPrices
     {
         public StockPriceType StockPriceType => StockPriceType.MarketWatch;
 
-        public decimal GetStockPrice(string symbol)
+        public async Task<decimal> GetStockPrice(string symbol)
         {
             using (WebClient client = new WebClient()) // WebClient class inherits IDisposable
             {
                 string url = $"https://www.marketwatch.com/investing/stock/{symbol}";
-                var html = client.DownloadString(url);
+                var html = await client.DownloadStringTaskAsync(url);
 
                 // Or you can get the file content without saving it
                 var doc = new HtmlDocument();

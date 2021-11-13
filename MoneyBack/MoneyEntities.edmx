@@ -13,6 +13,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Symbol" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="Broker" Type="int" Nullable="false" />
+          <Property Name="StockPriceType" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Fronts">
           <Key>
@@ -112,6 +113,7 @@
           <Property Name="Symbol" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Fronts" Relationship="MoneyModel.FK_Fronts_Companies" FromRole="Company" ToRole="Front" />
           <Property Name="Broker" Type="Int32" Nullable="false" />
+          <Property Name="StockPriceType" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Front">
           <Key>
@@ -212,6 +214,7 @@
           <EntitySetMapping Name="Companies">
             <EntityTypeMapping TypeName="MoneyModel.Company">
               <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="StockPriceType" ColumnName="StockPriceType" />
                 <ScalarProperty Name="Broker" ColumnName="Broker" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

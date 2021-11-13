@@ -20,9 +20,9 @@ namespace MoneyBack.Bankier
 
         StockPriceType IStockPriceService.StockPriceType => StockPriceType.Bankier;
 
-        decimal IStockPriceService.GetStockPrice(string symbol)
+        public async Task<decimal> GetStockPrice(string symbol)
         {
-            return bankierConnection.GetData(symbol, true, true).Result.ActualPrice;
+            return (await bankierConnection.GetData(symbol, true, true)).ActualPrice;
         }
     }
 }

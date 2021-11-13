@@ -1,10 +1,15 @@
 ﻿using Common.Commands;
 using Common.Tasks;
+
 using Money.ViewModels.Fronts;
+
 using MoneyBack.Bankier;
 using MoneyBack.Bankier.Models;
 using MoneyBack.Repositories;
+using MoneyBack.StockPrices;
+
 using Ninject;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -54,8 +59,8 @@ namespace Money
             {
                 var vm = new AllFrontListItemViewModel(f);
 
-                if(hideEmpty == false || vm.HoldedAmount > 0)
-                Fronts.Add(vm);
+                if (hideEmpty == false || vm.HoldedAmount > 0)
+                    Fronts.Add(vm);
             }
 
 
@@ -65,7 +70,7 @@ namespace Money
 
         public async Task GetInformationAboutFront()
         {
-            Dictionary<string, GetDataResponse> companyDatas = new Dictionary<string, GetDataResponse>();
+            Dictionary<string, decimal> companyDatas = new Dictionary<string, decimal>();
 
             foreach (var f in Fronts)
             {
@@ -76,26 +81,25 @@ namespace Money
                 if (companyDatas.ContainsKey(companySymbol))
                 {
                     lock (Fronts)
-                        f.HoldedPrice = (decimal)companyDatas[companySymbol].ActualPrice;
+                        f.HoldedPrice = (decimal)companyDatas[companySymbol];
                 }
                 else try
-                {
-                    var bankierService = Global.Kernel.Get<IBankierConnection>();
-                    GetDataResponse data = await bankierService.GetData(companySymbol, true, true);
-
-                    
-                    lock (Fronts)
                     {
-                           f.HoldedPrice = (decimal)data.ActualPrice;
+                        var stockPriceService = Global.Kernel.Get<IAllStockPriceService>();
+                        decimal price = stockPriceService.GetStockPrice(f.StockPriceType, companySymbol);
+
+                        lock (Fronts)
+                        {
+                            f.HoldedPrice = price;
+                        }
+
+                        companyDatas.Add(companySymbol, price);
                     }
-                    
-                        companyDatas.Add(companySymbol, data);
-                }
-                catch (Exception e)
-                {
-                    int a = 2;
-                    //i must log that.
-                }
+                    catch (Exception e)
+                    {
+                        int a = 2;
+                        //i must log that.
+                    }
             }
         }
 
@@ -108,7 +112,7 @@ namespace Money
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            if(sender == HideEmptyFrontCheckbox)
+            if (sender == HideEmptyFrontCheckbox)
             {
                 var checkbox = sender as CheckBox;
                 GetFronts(hideEmpty: checkbox.IsChecked == true);

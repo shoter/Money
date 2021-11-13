@@ -1,5 +1,7 @@
 ﻿using MoneyBack.Bankier;
 using MoneyBack.Repositories;
+using MoneyBack.StockPrices;
+
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -25,6 +27,9 @@ namespace Money
             Kernel.Bind<ITransactionRepository>().To<TransactionRepository>().InTransientScope();
             Kernel.Bind<IFrontRepository>().To<FrontRepository>().InTransientScope();
             Kernel.Bind<IBankierConnection>().To<BankierConnection>().InTransientScope();
+            Kernel.Bind<IStockPriceService>().To<BankierStockPriceService>().InSingletonScope();
+            Kernel.Bind<IStockPriceService>().To<MarketWatchStockPriceService>().InSingletonScope();
+            Kernel.Bind<IAllStockPriceService>().To<AllStockPriceService>().InSingletonScope();
         }
     }
 }

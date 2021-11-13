@@ -10,6 +10,6 @@ namespace MoneyBack.StockPrices
     {
         StockPriceType StockPriceType { get; }
 
-        decimal GetStockPrice(string symbol);
+        Task<decimal> GetStockPrice(string symbol);
     }
 }

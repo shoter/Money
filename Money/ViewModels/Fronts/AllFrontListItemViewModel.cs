@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MoneyBack;
+using MoneyBack.StockPrices;
 
 namespace Money.ViewModels.Fronts
 {
@@ -13,10 +14,14 @@ namespace Money.ViewModels.Fronts
         public string CompanyName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
+        public StockPriceType StockPriceType { get; }
+
         public AllFrontListItemViewModel(Front front) : base(front)
         {
             CompanyName = front.Company.Symbol;
             StartDate = front.StartDate;
+            this.StockPriceType = (StockPriceType)front.Company.StockPriceType;
 
             var last = front.Transactions
                 .OrderByDescending(f => f.Date)

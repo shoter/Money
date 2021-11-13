@@ -24,6 +24,7 @@ namespace MoneyBack
         public string Name { get; set; }
         public string Symbol { get; set; }
         public int Broker { get; set; }
+        public int StockPriceType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Front> Fronts { get; set; }
