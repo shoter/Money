@@ -9,7 +9,7 @@ namespace MoneyBack.Bankier.Models
     public class IntervalDetail
     {
         public DateTime Date { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public int Volume { get; set; }
         public int Something { get; set; } 
     }

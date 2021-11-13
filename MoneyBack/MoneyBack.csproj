@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Bankier\BankierCommon.cs" />
     <Compile Include="Bankier\BankierConnection.cs" />
+    <Compile Include="Bankier\BankierStockPriceService.cs" />
     <Compile Include="Bankier\IBankierConnection.cs" />
     <Compile Include="Bankier\Models\GetDataResponse.cs" />
     <Compile Include="Bankier\Models\IntervalDetail.cs" />

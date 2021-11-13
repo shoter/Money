@@ -15,7 +15,7 @@ namespace MoneyBack.Bankier.Models
         public ProfileData ProfileData { get; set; }
         public List<IntervalDetail> Intervals { get; set; } = new List<IntervalDetail>();
 
-        public double ActualPrice => Intervals.Last().Price;
+        public Decimal ActualPrice => Intervals.Last().Price;
         public GetDataResponse(dynamic jsonObject) 
         {
             Interval = jsonObject.interval;
