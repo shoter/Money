@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoneyBack.Bankier
+namespace MoneyBack.StockPrices
 {
-    public class BankierService
+    public enum StockPriceType
     {
+        Bankier = 0,
+        MarketWatch = 1,
     }
 }

@@ -7,11 +7,13 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoneyBack.Stooq
+namespace MoneyBack.StockPrices
 {
-    public class StooqService
+    public class MarketWatchStockPriceService : IStockPriceService
     {
-        public static double GetStockPrice(string symbol)
+        public StockPriceType StockPriceType => StockPriceType.MarketWatch;
+
+        public decimal GetStockPrice(string symbol)
         {
             using (WebClient client = new WebClient()) // WebClient class inherits IDisposable
             {
@@ -23,12 +25,12 @@ namespace MoneyBack.Stooq
                 doc.LoadHtml(html);
 
                 var element = doc.GetElementbyId("maincontent");
-                element = element.SelectSingleNode("//*[contains(@class, 'value') and contains(@class, 'negative')]");
+                element = element.SelectSingleNode("//*[contains(@class, 'intraday__price')]");
+                element = element.SelectSingleNode("//bg-quote[contains(@class, 'value')]");
                 string text = element.InnerText;
 
-                return double.Parse(text);
+                return decimal.Parse(text);
             }
         }
-        
     }
 }

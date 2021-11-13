@@ -1,5 +1,5 @@
-﻿using MoneyBack.Requests;
-using MoneyBack.Stooq;
+﻿using MoneyBack.Rater;
+using MoneyBack.Requests;
 
 using System;
 using System.Collections.Generic;
@@ -29,7 +29,8 @@ namespace Test
 
             for (int i = 0; i < 10; ++i)
             {
-                Console.WriteLine(StooqService.GetStockPrice("dis"));
+                //Console.WriteLine(StooqService.GetStockPrice("dis"));
+                Console.WriteLine("1 USD = " + RaterService.UsdToPlnRate() + " PLN");
                 Thread.Sleep(1000);
             }
         }

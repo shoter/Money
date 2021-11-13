@@ -25,7 +25,6 @@ namespace Money
             Kernel.Bind<ITransactionRepository>().To<TransactionRepository>().InTransientScope();
             Kernel.Bind<IFrontRepository>().To<FrontRepository>().InTransientScope();
             Kernel.Bind<IBankierConnection>().To<BankierConnection>().InTransientScope();
-            Kernel.Bind<BankierService>().ToSelf().InTransientScope();
         }
     }
 }
