@@ -78,11 +78,16 @@ namespace Money
                     Amount = t.Amount,
                     Commision = t.Commision,
                     Price = t.Price,
-                    Currency = currency,
                     TransactionType = (TransactionTypeEnum)t.TypeID,
                     Profit = t.Total.Value,
                     Date = t.Date
                 }).ToList());
+
+            foreach(var t in TransactionsViewModel)
+            {
+                t.Currency = currency;
+            }
+
 
             broker = (StockBroker) front.Company.Broker;
 

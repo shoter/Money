@@ -26,7 +26,7 @@ namespace Money.ViewModels.Transactions
                                                        : new SolidColorBrush(Colors.Red);
         public decimal Profit { get; set; }
 
-        public string ProfiText => Currency.FormatPrice(Profit);
+        public string ProfitText => Currency.FormatPrice(Profit);
         public Brush ProfitFontBrush =>
             Profit > 0m ? new SolidColorBrush(Colors.Green)
                         : new SolidColorBrush(Colors.Red);
