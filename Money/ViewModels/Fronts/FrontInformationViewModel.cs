@@ -1,5 +1,6 @@
 ﻿using MoneyBack;
 using MoneyBack.Calculators;
+using MoneyBack.Currencies;
 using MoneyBack.Enums;
 
 using System;
@@ -18,6 +19,8 @@ namespace Money.ViewModels.Fronts
         public string EndDate { get; set; }
 
         public decimal Profit { get; set; }
+
+        public string ProfitText => Currency.FormatPrice(Profit);
         public StockBroker Broker { get; set; }
 
         public Brush ProfitFontBrush => Profit > 0m ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
@@ -30,9 +33,12 @@ namespace Money.ViewModels.Fronts
             {
                 holdedPrice = value;
                 NotifyPropertyChanged("Forecast");
+                NotifyPropertyChanged("HoldedPriceText");
                 NotifyPropertyChanged("ForecastFontBrush");
             }
         }
+
+        public string HoldedPriceText => Currency.FormatPrice(HoldedPrice);
 
         public decimal Forecast
         {
@@ -49,7 +55,11 @@ namespace Money.ViewModels.Fronts
             }
         }
 
+        public string ForecastText => Currency.FormatPrice(Forecast);
+
         public Brush ForeacstFontBrush => Forecast >= 0 ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
+
+        public ICurrency Currency { get; set; }
 
         public FrontInformationViewModel(Front front)
         {
@@ -58,6 +68,7 @@ namespace Money.ViewModels.Fronts
             Profit = front.Transactions.Select(t => t.Total).Sum() ?? 0m;
             HoldedAmount = front.Transactions.Select(t => t.AmountChange).Sum() ?? 0;
             this.Broker = (StockBroker)front.Company.Broker;
+            this.Currency = CurrencyProvider.ProvideCurrency((StockBroker)front.Company.Broker);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

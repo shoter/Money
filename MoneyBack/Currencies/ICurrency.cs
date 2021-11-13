@@ -4,7 +4,7 @@
     {
         string Symbol { get; }
 
-        string FormatPrice(decimal price);
+        string FormatPrice(decimal? price);
         
     }
 }

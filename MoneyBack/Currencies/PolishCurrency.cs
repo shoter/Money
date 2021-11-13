@@ -10,7 +10,7 @@ namespace MoneyBack.Currencies
     {
         public string Symbol => "PLN";
 
-        public string FormatPrice(decimal price)
-            => $"{price} PLN";
+        public string FormatPrice(decimal? price)
+            => price != null ? $"{price:0.###} PLN" : "";
     }
 }

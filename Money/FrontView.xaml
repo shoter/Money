@@ -50,7 +50,7 @@
 			</DockPanel>
 			<DockPanel DockPanel.Dock="Top">
 				<TextBlock Text="Profit: " />
-				<TextBlock Text="{Binding Profit}" Foreground="{Binding ProfitFontBrush}" />
+				<TextBlock Text="{Binding ProfitText}" Foreground="{Binding ProfitFontBrush}" />
 			</DockPanel>
 			<DockPanel DockPanel.Dock="Top">
 				<TextBlock Text="Amount holded: " />
@@ -58,7 +58,7 @@
 			</DockPanel>
 			<DockPanel DockPanel.Dock="Top">
 				<TextBlock Text="Forecast: " />
-				<TextBlock Text="{Binding Forecast}" Foreground="{Binding ForecastFontBrush}" />
+				<TextBlock Text="{Binding ForecastText}" Foreground="{Binding ForecastFontBrush}" />
 			</DockPanel>
 		</DockPanel>
 		<DockPanel Name="NewTransaction" Grid.Column="1" Grid.Row="1">

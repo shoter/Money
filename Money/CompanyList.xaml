@@ -27,7 +27,8 @@
 				<DataGridTextColumn Header="Name" Binding="{Binding Name}" />
 				<DataGridTextColumn Header="Symbol" Binding="{Binding Symbol}" />
 				<DataGridTextColumn Header="Fronts count" Binding="{Binding FrontsCount}" />
-			</DataGrid.Columns>
+                <DataGridTextColumn Header="Broker" Binding="{Binding BrokerName}" />
+            </DataGrid.Columns>
 		</DataGrid>
     </DockPanel>
 </UserControl>

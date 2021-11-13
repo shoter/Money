@@ -46,7 +46,8 @@ namespace Money
                     Name = c.Name,
                     Symbol = c.Symbol,
                     FrontsCount = c.Fronts.Count,
-                    StockPriceType = c.StockPriceType
+                    StockPriceType = c.StockPriceType,
+                    Broker = c.Broker,
                 }).ToList();
 
             Filtered = Companies;

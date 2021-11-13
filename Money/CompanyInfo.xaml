@@ -40,7 +40,7 @@
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Active" Binding="{Binding Active}" />
 				<DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-				<DataGridTextColumn Header="Profit" Binding="{Binding Profit}" >
+				<DataGridTextColumn Header="Profit" Binding="{Binding ProfitText}" >
 					<DataGridTextColumn.CellStyle>
 						<Style>
 							<Setter Property="TextElement.Foreground" Value="{Binding ProfitFontBrush}"/>
@@ -48,14 +48,14 @@
 					</DataGridTextColumn.CellStyle>
 				</DataGridTextColumn>
 				<DataGridTextColumn Header="Amount hold" Binding="{Binding HoldedAmount}" />
-				<DataGridTextColumn Header="Projected profit" Binding="{Binding Projection}" >
+				<DataGridTextColumn Header="Projected profit" Binding="{Binding ProjectionText}" >
 					<DataGridTextColumn.CellStyle>
 						<Style>
 							<Setter Property="TextElement.Foreground" Value="{Binding ProjectionFontBrush}"/>
 						</Style>
 					</DataGridTextColumn.CellStyle>
 				</DataGridTextColumn>
-                <DataGridTextColumn Header="Current price" Binding="{Binding HoldedPrice}">
+                <DataGridTextColumn Header="Current price" Binding="{Binding HoldedPriceText}">
                 <DataGridTextColumn.CellStyle>
                     <Style>
                         <Setter Property="TextElement.Foreground" Value="{Binding CurrentPriceBrush}"/>
