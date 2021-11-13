@@ -105,7 +105,9 @@
     <Compile Include="Repositories\MoneyRepositoryBase.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="Requests\JsonRequest.cs" />
+    <Compile Include="StockPrices\IAllStockPriceService.cs" />
     <Compile Include="StockPrices\IStockPriceService.cs" />
+    <Compile Include="StockPrices\AllStockPriceService.cs" />
     <Compile Include="StockPrices\StockPriceType.cs" />
     <Compile Include="StockPrices\MarketWatchStockPriceService.cs" />
     <Compile Include="Transaction.cs">
