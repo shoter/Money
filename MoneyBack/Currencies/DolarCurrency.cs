@@ -9,6 +9,8 @@ namespace MoneyBack.Currencies
     public class DolarCurrency : ICurrency
     {
         public string Symbol => "$";
-        
+
+        public string FormatPrice(decimal price)
+            => $"{price} $";
     }
 }

@@ -9,6 +9,8 @@ namespace MoneyBack.Currencies
     public class PolishCurrency : ICurrency
     {
         public string Symbol => "PLN";
-        
+
+        public string FormatPrice(decimal price)
+            => $"{price} PLN";
     }
 }
