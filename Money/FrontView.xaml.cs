@@ -3,6 +3,7 @@ using Money.ViewModels.Fronts;
 using Money.ViewModels.Transactions;
 using MoneyBack;
 using MoneyBack.Bankier;
+using MoneyBack.Currencies;
 using MoneyBack.Enums;
 using MoneyBack.Repositories;
 using MoneyBack.Requests;
@@ -43,6 +44,8 @@ namespace Money
 
         private StockPriceType stockPriceType;
 
+        private ICurrency currency;
+
         public FrontView(int frontID)
         {
             this.frontID = frontID;
@@ -66,6 +69,8 @@ namespace Money
 
             FrontInformations.DataContext = FrontInfoViewModel;
 
+            currency = CurrencyProvider.ProvideCurrency((StockBroker)front.Company.Broker);
+
             TransactionsViewModel = new ObservableCollection<TransactionListItemViewModel>(transactionRepository.Where(t => t.FrontID == frontID)
                 .OrderBy(t => t.Date)
                 .Select(t => new TransactionListItemViewModel()
@@ -73,6 +78,7 @@ namespace Money
                     Amount = t.Amount,
                     Commision = t.Commision,
                     Price = t.Price,
+                    Currency = currency,
                     TransactionType = (TransactionTypeEnum)t.TypeID,
                     Profit = t.Total.Value,
                     Date = t.Date
@@ -137,6 +143,7 @@ namespace Money
                 Price = transaction.Price,
                 TransactionType = (TransactionTypeEnum)transaction.TypeID,
                 Profit = transaction.Total.Value,
+                Currency = currency,
                 Date = transaction.Date
             });
 

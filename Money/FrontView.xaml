@@ -25,10 +25,10 @@
 					</DataGridTextColumn.CellStyle>
 				</DataGridTextColumn>
 				<DataGridTextColumn Header="Date" Binding="{Binding Date}" />
-				<DataGridTextColumn Header="Price" Binding="{Binding Price}" />
-				<DataGridTextColumn Header="Amount" Binding="{Binding Amount}" />
-				<DataGridTextColumn Header="Commision" Binding="{Binding Commision}" />
-				<DataGridTextColumn Header="Profit/Loss" Binding="{Binding Profit}"  >
+				<DataGridTextColumn Header="Price" Binding="{Binding PriceText}" />
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" />
+				<DataGridTextColumn Header="Commision" Binding="{Binding CommisionText}" />
+				<DataGridTextColumn Header="Profit/Loss" Binding="{Binding ProfitText}"  >
 					<DataGridTextColumn.CellStyle>
 						<Style>
 							<Setter Property="TextElement.Foreground" Value="{Binding ProfitFontBrush}"/>
